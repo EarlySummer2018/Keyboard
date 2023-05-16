@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EalrySummer KeyBoard</title>
+    <style>
+         body::after {
+            content: 'EalrySummer KeyBoard';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            pointer-events: none;
+            font-size: 48px;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding-top: 50vh; /* 调整垂直位置 */
+            transform: rotate(-15deg); /* 添加倾斜效果 */
+            background-repeat: repeat; 
+        }
+
+        *, *::before, *::after, body,html {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        i {
+            font-style: normal;
+        }
+        .contianer {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .author {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 10px 50px;
+            border-radius: 5px;
+            box-shadow: inset 1px 1px 5px #999, inset -1px -1px 5px #999;
+            /* color: #999; */
+            background-color: #e8ecef;
+        }
+        .keyBoard-box {
+            width: 1000px;
+            height: 350px;
+            border-radius: 10px;
+            margin-top: 50px;
+            box-shadow: inset 1px 1px 5px #999, inset -1px -1px 5px #999;
+            background-color: #e8ecef;
+            font-size: 12px;
+            padding: 20px;
+            display: flex;
+            user-select: none;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .left {
+            margin-right: 20px;
+            max-width: 730px;
+            min-width: 730px;
+            /* opacity: 0; */
+        }
+        .right {
+            position: relative;
+        }
+        .right .plus {
+            position: absolute;
+            right: 0;
+            height: 90px;
+            width: 40px;
+            bottom: 110px;
+        }
+        .right .equal {
+            position: absolute;
+            right: 0;
+            height: 90px;
+            width: 40px;
+            bottom: 10px;
+        }
+        .default-key {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: inset 5px 5px 8px #fff, 5px 5px 8px rgba(0, 0, 0, 0.3);
+            background-color: #e8ecef;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .default-key:active {
+            box-shadow: inset 5px 5px 8px rgba(0, 0, 0, 0.1), inset -5px -5px 8px rgba(0, 0, 0, 0.1) !important;
+            color: #15e38a !important;
+        }
+        .active {
+            box-shadow: inset 5px 5px 8px rgba(0, 0, 0, 0.1), inset -5px -5px 8px rgba(0, 0, 0, 0.1) !important;
+            color: #15e38a !important;
+        }
+        .default-key:active .square {
+            background-color: #15e38a;
+        }
+        .empty {
+            box-shadow: none !important;
+            width: 0;
+            margin-right: 50px !important;
+        }
+        .empty2 {
+            box-shadow: none !important;
+            width: 0;
+            margin-right: 20px !important;
+        }
+        .cell {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+            max-width: 730px;
+        }
+        .spacebar {
+            flex: 1;
+        }
+        .cell .default-key {
+            margin-right: 10px;
+        }
+        .cell span:last-child {
+            margin-right: 0;
+        }
+        .long1 {
+            width: 80px;
+        }
+        .long5 {
+            width: 90px;
+        }
+        .long4 {
+            width: 110px;
+        }
+        .long2 {
+            width: 85px;
+        }
+        .long3 {
+            width: 60px;
+        }
+        .square-box {
+            flex-direction: row;
+        }
+        .square {
+            position: relative;
+            display: inline-block;
+            width: 5px;
+            min-width: 5px;
+            height: 12px;
+            min-height: 5px;
+            background-color: #000;
+        }
+        .square:first-child {
+            margin-right: 2px;
+        }
+        .square::after {
+            position: absolute;
+            content: "";
+            height: 2px;
+            width: 100%;
+            top: 50%;
+            left: 0;
+            background-color: #e8ecef;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="contianer">
+        <p class="author" data-author="EalrySummer">
+            EalrySummer KeyBoard
+            <!-- 的剂稳定剂为基地机务段 -->
+        </p>
+        <section class="keyBoard-box">
+            <aside class="left">
+                <section class="cell">
+                    <span class="default-key">Esc</span>
+                    <span class="default-key empty"></span>
+                    <span class="default-key">F1</span>
+                    <span class="default-key">F2</span>
+                    <span class="default-key">F3</span>
+                    <span class="default-key">F4</span>
+                    <span class="default-key empty2"></span>
+                    <span class="default-key">F5</span>
+                    <span class="default-key">F6</span>
+                    <span class="default-key">F7</span>
+                    <span class="default-key">F8</span>
+                    <span class="default-key empty2"></span>
+                    <span class="default-key">F9</span>
+                    <span class="default-key">F10</span>
+                    <span class="default-key">F11</span>
+                    <span class="default-key">F12</span>
+                </section>
+                <section class="cell">
+                    <span data-keycode="192" class="default-key">
+                        <i>~</i>
+                        <i>丶</i>
+                    </span>
+                    <span data-keycode="49" class="default-key">
+                        <i>!</i>
+                        <i>1</i>
+                    </span>
+                    <span data-keycode="50" class="default-key">
+                        <i>@</i>
+                        <i>2</i>
+                    </span>
+                    <span data-keycode="51" class="default-key">
+                        <i>#</i>
+                        <i>3</i>
+                    </span>
+                    <span data-keycode="52" class="default-key">
+                        <i>$</i>
+                        <i>4</i>
+                    </span>
+                    <span data-keycode="53" class="default-key">
+                        <i>%</i>
+                        <i>5</i>
+                    </span>
+                    <span data-keycode="54" class="default-key">
+                        <i>^</i>
+                        <i>6</i>
+                    </span>
+                    <span data-keycode="55" class="default-key">
+                        <i>&</i>
+                        <i>7</i>
+                    </span>
+                    <span data-keycode="56" class="default-key">
+                        <i>*</i>
+                        <i>8</i>
+                    </span>
+                    <span data-keycode="57" class="default-key">
+                        <i>(</i>
+                        <i>9</i>
+                    </span>
+                    <span data-keycode="48" class="default-key">
+                        <i>)</i>
+                        <i>0</i>
+                    </span>
+                    <span data-keycode="189" class="default-key">
+                        <i>—</i>
+                        <i>-</i>
+                    </span>
+                    <span data-keycode="187" class="default-key">
+                        <i>+</i>
+                        <i>=</i>
+                    </span>
+                    <span data-keycode="" class="default-key long1">Backspace</span>
+                </section>
+                <section class="cell">
+                    <span class="default-key long3">Tab</span>
+                    <span data-keycode="81" class="default-key">Q</span>
+                    <span data-keycode="87" class="default-key">W</span>
+                    <span data-keycode="69" class="default-key">E</span>
+                    <span data-keycode="82" class="default-key">R</span>
+                    <span data-keycode="84" class="default-key">T</span>
+                    <span data-keycode="89" class="default-key">Y</span>
+                    <span data-keycode="85" class="default-key">U</span>
+                    <span data-keycode="73" class="default-key">I</span>
+                    <span data-keycode="79" class="default-key">O</span>
+                    <span data-keycode="80" class="default-key">P</span>
+                    <span data-keycode="219" class="default-key">
+                        <i>{</i>
+                        <i>[</i>
+                    </span>
+                    <span data-keycode="221" class="default-key">
+                        <i>}</i>
+                        <i>]</i>
+                    </span>
+                    <span data-keycode="220" class="default-key long3">
+                        <i>|</i>
+                        <i>\</i>
+                    </span>
+                </section>
+                <section class="cell">
+                    <span data-keycode="20" class="default-key long2">Caps lock</span>
+                    <span data-keycode="65" class="default-key">A</span>
+                    <span data-keycode="83" class="default-key">S</span>
+                    <span data-keycode="68" class="default-key">D</span>
+                    <span data-keycode="70" class="default-key">F</span>
+                    <span data-keycode="71" class="default-key">G</span>
+                    <span data-keycode="72" class="default-key">H</span>
+                    <span data-keycode="74" class="default-key">J</span>
+                    <span data-keycode="75" class="default-key">K</span>
+                    <span data-keycode="76" class="default-key">L</span>
+                    <span data-keycode="186" class="default-key">
+                        <i>:</i>
+                        <i>;</i>
+                    </span>
+                    <span data-keycode="222" class="default-key">
+                        <i>"</i>
+                        <i>'</i>
+                    </span>
+                    <span data-keycode="13" class="default-key long2">Enter</span>
+                </section>
+                <section class="cell">
+                    <span class="default-key long4">Shift</span>
+                    <span data-keycode="90" class="default-key">Z</span>
+                    <span data-keycode="88" class="default-key">X</span>
+                    <span data-keycode="67" class="default-key">C</span>
+                    <span data-keycode="86" class="default-key">V</span>
+                    <span data-keycode="66" class="default-key">B</span>
+                    <span data-keycode="78" class="default-key">N</span>
+                    <span data-keycode="77" class="default-key">M</span>
+                    <span data-keycode="188" class="default-key">
+                        <i><</i>
+                        <i>,</i>
+                    </span>
+                    <span data-keycode="190" class="default-key">
+                        <i>></i>
+                        <i>.</i>
+                    </span>
+                    <span data-keycode="191" class="default-key">
+                        <i>?</i>
+                        <i>/</i>
+                    </span>
+                    <span class="default-key long4">Shift</span>
+                </section>
+                <section class="cell">
+                    <span class="default-key long3">Ctrl</span>
+                    <span class="default-key square-box">
+                        <i class="square"></i>
+                        <i class="square"></i>
+                    </span>
+                    <span class="default-key">Alt</span>
+                    <span data-keycode="32" class="default-key spacebar">Spacebar</span>
+                    <span class="default-key">Alt</span>
+                    <span class="default-key">Fn</span>
+                    <span class="default-key long3">Ctrl</span>
+                </section>
+            </aside>
+            <aside class="right">
+                <section class="cell">
+                    <span class="default-key">
+                        <span style="transform: scale(0.75);text-align: center;">Num Lock</span>
+                    </span>
+                    <span data-keycode="111" class="default-key">/</span>
+                    <span data-keycode="106" class="default-key">*</span>
+                    <span data-keycode="109" class="default-key">-</span>
+                </section>
+                <section class="cell">
+                    <span data-keycode="103" class="default-key">7</span>
+                    <span data-keycode="104" class="default-key">8</span>
+                    <span data-keycode="105" class="default-key">9</span>
+                </section>
+                <section class="cell">
+                    <span data-keycode="100" class="default-key">4</span>
+                    <span data-keycode="101" class="default-key">5</span>
+                    <span data-keycode="102" class="default-key">6</span>
+                </section>
+                <section class="cell">
+                    <span data-keycode="97" class="default-key">1</span>
+                    <span data-keycode="98" class="default-key">2</span>
+                    <span data-keycode="99" class="default-key">3</span>
+                </section>
+                <section class="cell">
+                    <span data-keycode="96" class="default-key long5">0</span>
+                    <span data-keycode="110" class="default-key">.</span>
+                </section>
+                <span data-keycode="107" class="default-key plus">+</span>
+                <span data-keycode="108" class="default-key equal">Enter</span>
+            </aside>
+        </section>
+    </div>
+    <script>
+        const keyList = document.querySelectorAll('.default-key')
+        const nodeMap = new Map()
+        keyList.forEach((el, index)=>{
+            const keyCode = el.dataset.keycode ? Number(el.dataset.keycode) : undefined
+            if (keyCode) {
+                nodeMap.set(keyCode, {
+                    index: index,
+                    code: el.dataset.code || undefined,
+                })
+            }
+        })
+        const keyDownList = []
+        const handlerKeyDown = (e) => {
+            console.log(e);
+            const len = keyDownList.length
+            const flag = keyDownList.includes(e.keyCode)
+            if (!flag) keyDownList.push(e.keyCode)
+            if(len !== keyDownList.length) {
+                if(nodeMap.has(e.keyCode)) {
+                        const {index, code} = nodeMap.get(e.keyCode)
+                        keyList[index].classList.add('active')
+                    }
+            }
+        }
+        const handlerKeyUp = (e) => {
+            const len = keyDownList.length
+            const index = keyDownList.findIndex(el=>el===e.keyCode)
+            keyDownList.splice(index,1)
+            if(nodeMap.has(e.keyCode)) {
+                const {index, code} = nodeMap.get(e.keyCode)
+                keyList[index].classList.add('active')
+                setTimeout(() => {
+                    keyList[index].classList.remove('active')
+                }, 100);
+            }
+        }
+
+        // window.addEventListener('keydown', handlerKeyDown)
+        window.addEventListener('keyup', handlerKeyUp)
+    </script>
+</body>
+</html>
